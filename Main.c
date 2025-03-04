@@ -4,14 +4,14 @@
 
 #include "ch32v00x.h"
 
-#define LED_Pin  1<<(1*0) //GPIO -> PC0
+#define LED_Pin  1<<(0*1) //GPIO -> PC0
 #define LED_Port GPIOC    //GPIOC
 
 void GPIO_Config(void){
      RCC->APB2PCENR |= RCC_IOPCEN;     // Enable clock PortC
 
-     LED_Port->CFGLR &= ~(0x0F << (1*0)); // Clear setting bit PC0
-     LED_Port->CFGLR |= LED_Pin;          // Set PC0 out push-pull 10MHz
+     LED_Port->CFGLR &= ~(0x0F << (0*4)); // Clear setting bit PC0
+     LED_Port->CFGLR |= 1 << (0*4);       // Set PC0 out push-pull 10MHz
      LED_Port->BCR = LED_Pin;             // Reset
 }
 
